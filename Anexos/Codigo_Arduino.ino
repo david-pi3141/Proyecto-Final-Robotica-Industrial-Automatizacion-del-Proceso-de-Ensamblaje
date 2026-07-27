@@ -1,100 +1,58 @@
-// Entrada del sensor infrarrojo
-const int sensorIR = 7;
-
-// Salidas
-
-const int pinCapacitor  = 9;
-const int pinIC         = 8;
-const int pinResistor   = 11;
+const int sensorIR = 2; // Debe ser pin 2 o 3 en Arduino Uno
+const int pinCapacitor = 9;
+const int pinIC = 11;
+const int pinResistor = 8;
 const int pinConector = 10;
-//=====================================
 
-bool estadoAnterior = LOW;
-bool ifInf = LOW;
+volatile bool ifInf = LOW; // Variable modificada dentro de la interrupción
 
-//=====================================
-
-void setup()
-{
-    Serial.begin(115200);
-
-    pinMode(sensorIR, INPUT);
-
-    pinMode(pinCapacitor, OUTPUT);
-    pinMode(pinIC, OUTPUT);
-    pinMode(pinResistor, OUTPUT);
-    pinMode(pinConector, OUTPUT);
-
-    apagarTodo();
+void setup() {
+  Serial.begin(115200);
+  pinMode(sensorIR, INPUT_PULLUP); // O INPUT según tu circuito
+  pinMode(pinCapacitor, OUTPUT);
+  pinMode(pinIC, OUTPUT);
+  pinMode(pinResistor, OUTPUT);
+  pinMode(pinConector, OUTPUT);
+  apagarTodo();
+  
+  // Vincular la interrupción en flanco de subida (RISING)
+  attachInterrupt(digitalPinToInterrupt(sensorIR), detectarIR, RISING);
 }
 
-//=====================================
-
-void loop()
-{
-    bool estadoActual = digitalRead(sensorIR);
-
-    // Detectar flanco de subida del sensor
-    if (estadoActual == HIGH && estadoAnterior == LOW)
-    {
-        // Avisar a Python que tome una fotografía
-        ifInf = HIGH;
-        Serial.println("IR");
-    }
-
-    estadoAnterior = estadoActual;
-
+void loop() {
+  // Si la interrupción detectó el sensor
+  if (ifInf == HIGH) {
+    Serial.println("IR");
+    Serial.println(" ");
     // Esperar respuesta desde Python
-    if (Serial.available() > 0 && ifInf == HIGH)
-    {
-        int clase = Serial.parseInt();
-
-        apagarTodo();
-
-        switch (clase)
-        {
-            case 1:
-                digitalWrite(pinCapacitor, HIGH);
-                Serial.println("Capacitor");
-                break;
-
-            case 2:
-                digitalWrite(pinIC, HIGH);
-                Serial.println("IC");
-                break;
-
-            case 3:
-                digitalWrite(pinResistor, HIGH);
-                Serial.println("Resistor");
-                break;
-
-            case 4:
-                digitalWrite(pinConector, HIGH);
-                Serial.println("Transistor");
-                break;
-
-            case 5:
-                Serial.println("No se detectó nada");
-                break;
-
-            default:
-                Serial.println("Dato invalido");  
-                break;
-        }
-
-        Serial.print("Recibido: ");
-        Serial.println(clase);
-
-        ifInf = 0;
+    while (Serial.available() == 0) {
+      // Esperar datos sin bloquear con delay
     }
+    
+    int clase = Serial.parseInt();
+    apagarTodo();
+    switch (clase) {
+      case 1: digitalWrite(pinIC, LOW); Serial.println("Capacitor"); break;
+      case 2: digitalWrite(pinCapacitor, LOW); Serial.println("IC"); break;
+      case 3: digitalWrite(pinConector, LOW); Serial.println("Resistor"); break;
+      case 4: digitalWrite(pinResistor, LOW); Serial.println("Transistor"); break;
+      case 5: Serial.println("No se detectó nada"); break;
+      default: Serial.println("Dato invalido"); break;
+    }
+    ifInf = LOW; // Reiniciar indicador
+    Serial.print("Recibido: ");
+    Serial.println(clase);
+  }
 }
 
-//=====================================
+// Rutina de Servicio de Interrupción (ISR)
+void detectarIR() {
+  ifInf = HIGH;
+}
 
-void apagarTodo()
-{
-    digitalWrite(pinCapacitor, LOW);
-    digitalWrite(pinIC, LOW);
-    digitalWrite(pinResistor, LOW);
-    digitalWrite(pinConector, LOW);
+void apagarTodo() {
+  digitalWrite(pinCapacitor, HIGH);
+  digitalWrite(pinIC, HIGH);
+  digitalWrite(pinResistor, HIGH);
+  digitalWrite(pinConector, HIGH);
 }
