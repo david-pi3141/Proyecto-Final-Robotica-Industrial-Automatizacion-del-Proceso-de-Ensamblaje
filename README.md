@@ -18,40 +18,38 @@ Proyecto para la asignatura Robótica (2016770) Universidad Nacional de Colombia
 
 
 # 1. Descripción del proyecto
-Recepción, clasificación y ordenamiento (ABB IRB 140 “Caín”)
 
-Objetivo: recibir componentes en desorden desde banda, identificarlos (tipo y/o tamaño) y organizarlos en un almacén ordenado por categorías para el ensamblaje. Entrada:
+## Contexto general
 
-Componentes mezclados llegando por banda.
+El proyecto tiene como objetivo general el desarrollo de una línea automatizada para el ensamblaje de circuitos impresos, PCB. Esta línea está conformada por 4 estaciones robotizadas, en donde cada una tiene un objetivo específico. De esta manera, se tienen cuatro estaciones dispuestas de manera secuencial que corresponden a la clasificación, ensamblaje, soldadura y embalaje de las placas. Cada estación es operada por un robot industrial diferente y cumple una función específica dentro del proceso de manufactura.
 
-Almacén vacío/semivacío con posiciones asignadas por tipo.
-Secuencia mínima requerida:
+La presente descripción corresponde específicamente al desarrollo de la primera parte del proyecto que será desarrollada con el robot ABB IRB 140 “Caín”, el cual estará encargado de recibir componentes electrónicos transportados por una banda, clasificarlos de acuerdo con su tipo y organizarlos en un almacén estructurado para facilitar el proceso de ensamblaje realizado posteriormente por el robot Epson.
 
-1. Inicialización: home + verificación de estado seguro.
-2. Detección en banda (visi´on opcional):
-Detectar un componente disponible en el área de pick (posición aproximada).
-(Opcional) identificar tipo con visión/clasificación simple.
-3. Pick en banda: approach → pick → levantar.
-4. Clasificación: decidir a qu´e zona del almac´en pertenece (por tipo de componente).
-5. Place en almacén ordenado: depositar en la celda correspondiente (por ejemplo: “Resistencias”, “Capacitores”, “CI”, “Conectores”).
-6. Conteo/Inventario: mantener conteo por tipo para garantizar que haya ¿= 30 componentes listos para
-el Epson.
-7. Fin de etapa: señal “Almacén listo” cuando se alcance el conteo requerido (según receta).
+## Objetivo de la estación
 
-Verificación mínima:
+La primera etapa de la línea automatizada de ensamblaje de circuitos impresos (PCB) corresponde a la recepción, clasificación y almacenamiento de componentes electrónicos mediante el robot ABB IRB 140 "Caín". El propósito de esta estación es recibir componentes que llegan de forma desordenada sobre una banda transportadora, identificarlos según su tipo o categoría y organizarlos en un almacén inicialmente vacío o parcialmente ocupado, cuyas posiciones se encuentran previamente asignadas para cada categoría de componente. Esta organización permite que la siguiente estación del proceso disponga de los componentes ordenados para realizar el ensamblaje de la PCB de manera eficiente y repetitiva.
 
-Confirmar pick (sensor/tiempo/confirmación por operador).
- 
-Confirmar que el componente fue depositado en la celda correcta (por conteo o visión puntual).
+## Secuencia general del proceso
 
-Salida:
-Almacén organizado con componentes clasificados y listos para ensamblaje (mínimo 30 para 1 PCB).
+El proceso inicia con la inicialización del sistema, donde el robot debe desplazarse a la posición de Home y verificar que se cumplen las condiciones necesarias para comenzar la operación.
 
-Fallas típicas (manejo obligatorio):
+Posteriormente, el sistema debe detectar la presencia de un componente en el área de recolección de la banda transportadora. De manera opcional, puede emplearse un sistema de visión para identificar el tipo o tamaño del componente antes de su manipulación.
 
-No hay componente en el área de pick → esperar/reintentar.
-Pick fallido → reintentar hasta N veces y luego alarma.
-Clasificación incierta → enviar a bandeja “Rechazo” o pedir confirmación en HMI.
+Una vez detectado el componente, el robot ejecuta una operación de Pick, realizando una aproximación segura, la toma del componente y su posterior elevación. Con base en la clasificación obtenida, el sistema determina la categoría a la que pertenece el componente y selecciona la posición correspondiente dentro del almacén.
+
+Finalmente, el robot realiza la operación de Place, depositando el componente en la celda asignada. Este procedimiento se repite hasta completar la cantidad de componentes requerida para abastecer la estación de ensamblaje. Durante todo el proceso, el sistema mantiene un conteo del inventario clasificado y genera una señal de finalización cuando se alcanza la cantidad establecida para la receta de producción.
+
+## Verificaciones necesarias
+
+Para garantizar el correcto desarrollo del proceso, la estación debe incorporar mecanismos de verificación durante las operaciones críticas. En primer lugar, se debe confirmar que la operación de Pick fue realizada exitosamente, ya sea mediante sensores, temporización o confirmación del operador. De igual manera, debe verificarse que el componente fue depositado en la posición correcta del almacén, utilizando un conteo de inventario o un sistema de visión cuando se encuentre disponible.
+
+## Resultado
+
+El sistema debe ser capaz de entregar un almacén organizado con los componentes clasificados por categorías y disponibles para la siguiente etapa de ensamblaje. El inventario debe contener la cantidad de componentes requerida para completar el ensamblaje de una PCB, garantizando que los elementos se encuentren correctamente distribuidos según su tipo.
+
+## Manejo mínimo de fallas típicas
+
+Durante la operación pueden presentarse diferentes situaciones que deben ser consideradas dentro del diseño del sistema. Entre ellas se encuentran la ausencia de componentes en el área de recolección, lo que obliga al sistema a esperar o reintentar la detección; un fallo durante la operación de Pick, que requiere realizar nuevos intentos antes de generar una condición de alarma; y una clasificación incierta del componente, caso en el cual este puede enviarse a una bandeja de rechazo o solicitar la intervención del operador mediante la interfaz HMI para confirmar la clasificación.
 
 ---
 
@@ -131,12 +129,11 @@ Acompañado de esto, se tomaron fotos de cada uno de los objetos ubicados en el 
 
 # 5. Diagramas de flujo del proceso
 
-Una vez conocido el proceso a realizar, se obtiene un diagrama de flujo de las rutinas y subprocesos que deberán ser realizados para cumplir con la tarea asignada. Ya que este es un proceso extenso, se realizará también el diagrama de flujo de algunas subrutinas, estas se mostrarán en color verde en bloques del diagrama principal, mostrado a continuación.
+Una vez definido el funcionamiento del sistema, se presentan los diagramas de flujo correspondientes a las rutinas y subprocesos que conforman el proceso de clasificación y almacenamiento de componentes. Debido a que el programa está estructurado de forma modular y contiene diversos procedimientos, además del diagrama de flujo principal se incluyen los diagramas de las subrutinas más relevantes para facilitar la comprensión de la lógica implementada. En el diagrama principal, dichas subrutinas se resaltan mediante bloques de color verde.
 
-Nota: El bloque "Esperar componente" implica que la banda transportadora está activa hasta que el sensor detecta la llegada del componente.
+Nota: En el bloque "Esperar componente" se considera que la banda transportadora permanece en funcionamiento hasta que el sensor detecta la llegada de un componente, momento en el cual la banda se detiene para continuar con el proceso.
 
 ```mermaid
-
 flowchart TD
 
     A([Inicio])
@@ -153,10 +150,10 @@ flowchart TD
     E[Esperar componente]
     F[Capturar imagen]
     G[Clasificar componente]
-    H[Confirmar clasificación]
+    H{Confirmar clasificación}
     I[Realizar Pick]
     J[Aproximación Pick]
-    K[Confirmar Pick]
+    K{Confirmar Pick}
     L[Realizar Place]
     M[Confirmar Place]
 
@@ -177,10 +174,12 @@ flowchart TD
     E --> F
     F --> G
     G --> H
-    H --> I
+    H -- Sí --> I
+    H -- Descartar --> E
     I --> J
     J --> K
-    K --> L
+    K --  Sí--> L
+    K -- Descartar --> E
     L --> M
     M --> N
 
@@ -191,17 +190,14 @@ flowchart TD
     N -- No --> D
 
     classDef subrutina fill:#C8E6C9,stroke:#2E7D32,stroke-width:2px;
-    class H,K,M subrutina;
-
-
+    class H,K subrutina;
 ```
 
-
+## Subrutina de clasificación
 ```mermaid
-
 flowchart TD
 
-A([Inicio])
+A([Inicio confirmar clasificación])
 
 B[Mostrar mensaje de espera de confirmación]
 
@@ -222,7 +218,7 @@ G[Capturar imagen]
 
 H[Clasificar componente]
 
-
+I[Descartar componente]
 
 N[Reiniciar variable<br/>ConfirmarClasificación = 0]
 
@@ -230,19 +226,75 @@ O([Fin])
 
 A --> B
 B --> C
-
-
 C -->|2: No| E
 E --> F
 F --> G
 G --> H
 H --> C
-
-C -->|3: Descartar| F
-
-
-
+C -->|3: Descartar| I
 ```
+
+## Subrutina de pick
+
+```mermaid
+flowchart TD
+
+A([Inicio confirmar pick])
+
+B[Mostrar mensaje de espera de confirmación]
+
+C{¿Se realizó correctamente el Pick?}
+
+D[PICK confirmado]
+
+E[Reintentar PICK]
+
+
+G[Descartar componente]
+
+
+N[Reiniciar ConfirmarPick = 0]
+
+O([Fin])
+
+A --> B
+B --> C
+
+C -->|1: Sí| D
+D --> N
+
+C -->|2: No| E
+E --> C
+N --> O
+C -->|3: Descartar| G
+```
+
+## Subrutina de interrupción
+
+Además, se agrega una parada de emergencia por software. Esta rutina es agregada como una interrupción, lo que permitirá parar al manipulador en el momento que sea necesario, imponiéndose sobre el código que se esté ejecutando.
+
+```mermaid
+flowchart TD
+
+A([Interrupción de emergencia])
+
+B[Mostrar mensaje de parada<br/>de software]
+
+C[Apagar actuadores y banda transportadora]
+
+E[Esperar botón Inicio]
+
+G[Mostrar mensaje de reanudación de proceso]
+
+H([Retornar al proceso])
+
+A --> B
+B --> C
+C --> E
+E --> G
+G --> H
+```
+Sin embargo, es importante mencionar que esta parada de emergencia por software no es ideal, ni comparable, con respecto a las paradas de emergencia físicas. En este caso, la interrupción funciona al terminar la línea de código que se está ejecutando, por lo tanto, su parada no es completamente instantánea, lo que podría suponer un riesgo para el entorno a nivel general o el personal que esté alrededor del manipulador. Además, tener que utilizar un botón adicional en la interfaz no es tan práctico y alcanzable como el botón de parada de emergencia físico, ya que supone un paso adicional e incluso que puede no llegar a ejecutarse por algún error o desviación al tocar el botón en la pantalla. Todas estas razones suponen una gran desventaja a la parada de emergencia por software frente a los botones físicos.
 
 ---
 
