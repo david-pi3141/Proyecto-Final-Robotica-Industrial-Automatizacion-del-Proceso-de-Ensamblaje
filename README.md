@@ -126,6 +126,8 @@ En el programa train_det.py se maneja únicamente una función, la cual a su vez
 
 # 11. Video de implementación física
 
+[Implementación](https://www.youtube.com/watch?v=KdvNrrpuJQg)
+
 ---
 
 # 12. Conclusiones
