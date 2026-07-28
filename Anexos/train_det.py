@@ -11,11 +11,6 @@ def main():
     # Modelo preentrenado de detección
     #model = YOLO(r"C:\Users\david\Desktop\ROBOTICA\Proyecto\YOLO\runs\detect\runs\Detector_Componentes-7\weights\best.pt")
     model = YOLO(r"C:\Users\david\Desktop\ROBOTICA\Proyecto\YOLO\runs\detect\runs\Detector_Componentes_Nuevo\weights\best.pt")
-    # También puedes usar:
-    # yolo26n.pt
-    # yolo26s.pt
-    # yolo26m.pt
-    # yolo26l.pt
 
     model.train(
 

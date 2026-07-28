@@ -17,7 +17,7 @@ PCBs.</h1>
 Proyecto para la asignatura Robótica (2016770) Universidad Nacional de Colombia
 
 
-# Descripción de ´rpyecto
+# 1. Descripción del proyecto
 Recepción, clasificación y ordenamiento (ABB IRB 140 “Caín”)
 
 Objetivo: recibir componentes en desorden desde banda, identificarlos (tipo y/o tamaño) y organizarlos en un almacén ordenado por categorías para el ensamblaje. Entrada:
@@ -55,39 +55,30 @@ Clasificación incierta → enviar a bandeja “Rechazo” o pedir confirmación
 
 ---
 
-# Bitácora del desarrollo: decisiones, cambios, evidencias y resultados.
+# 2. Bitácora del desarrollo: decisiones, cambios, evidencias y resultados.
 
 ---
 
-# Diagramas de flujo del proceso
+# 3. Descripción de la solución planteada.
+
+---
+
+# 4. Diseño del gripper/herramientas: planos + fotos + justificaci´on.
+
+---
+
+# 5. Diagrama de flujo del proceso
 
 
 Modelos/simulaciones: RobotStudio (ABB), RoboDK (Yaskawa), EPSON RC+ (Epson).
 
 ---
 
-# Comparación manual vs automatizado: tiempos por PCB, tasa de fallos, repetibilidad.
-
-Descripción detallada de la solución planteada.
-
-Diagrama de flujo de acciones del robot.
-
----
-
-# Plano de planta
-
----
-
-# Diseño de la herramienta
-Diseño del gripper/herramientas: planos + fotos + justificaci´on.
-
----
-
-# Código fuente comentado: RAPID / Python / SPEL+.
+# 6. Código fuente comentado: RAPID / Python / SPEL+.
 Código fuente de utilizado para el desarrollo de la práctica.
 ## Descripción de las funciones utilizadas.
 
-## Visión de máquina
+# 7. Visión de máquina
 
 Para poder realizar la clasificación de los cuatro objetos, hicimos uso de visión de máquina. Inicialmente, se intentó hacer uso del modelo Net8 para realizar la clasificación, haciendo uso de un dataset que se encuentra disponible en https://www.kaggle.com/datasets/julioazancort/basic-electronic-components; sin el contenedor, tantas imágenes dificultaron el entrenamiento del modelo. Adicionalmente, se presentó el problema de que este dataset contiene imágenes donde el objeto a identificar ocupa la mayoría de la misma, situación que no se presenta en nuestro escenario.
  
@@ -104,16 +95,34 @@ Acompañado de esto, se tomaron fotos de cada uno de los objetos ubicados en el 
 
 Luego de tomar las fotos, se procedió a etiquetarlas, para indicar a qué objeto corresponde cada foto, además de indicar la región de la imagen donde se encuentra, esto para evitar que tome parte del fondo para reconocer el objeto. Esta tarea se realizó en la plataforma Roboflow. El primer dataset contiene en total 87 imágenes, y el segundo contiene 174 imágenes. Luego se aplica data augmentation para darle más variedad al dataset. Este dataset se descarga para luego usarlo de manera local para el entrenamiento.
 
+Ahora, dese un script de Python que se entrena usando YOLOv26m. Se realizaron dos entrenamientos: el primero a partir de YOLOv26m. Este entrenamiento se realizó haciendo 30 "repeticiones" o epochs, redimensionando las imágenes a 640 píxeles, procesando ocho imágenes simultáneamente por paso de entrenamiento, aceptando los pesos del modelo preentrenado y activando el entrenamiento con precisión mixta automática, la cual permite reducir el uso de la memoria de la GPU, ya que se está usando CUDA. Luego de entrenarlo, se tomó el modelo entrenado y se reentrenó usando el segundo dataset. En los anexos se puede consultar el archivo con el que se entrenó.
 
-Ahora, dese un script de Python que se entrena usando YOLOv26m. Se realizaron dos entrenamientos: el primero a partir de YOLOv26m y el primer dataset; luego de entrenarlo, se tomó el modelo entrenado y se reentrenó usando el segundo dataset.
-
----
-
-# Video del funcionamiento del proyecto
+Tras realizar el entrenamiento, se aplicó el modelo de visión de máquina para identificar los cuatro objetos haciendo uso de una webcam conectada por USB a la PC. En este programa, inicialmente debemos iniciar la comunicación con el puerto serial COM, en este caso COM3; esto se hace con el fin de poderse comunicar con el Arduino Uno, tema que se tratará más adelante. Luego cargamos el modelo anteriormente entrenado e iniciamos la cámara. A lo largo del programa se emiten algunos mensajes para confirmar la comunicación entre los dispositivos. El programa se queda esperando recibir el mensaje "IR" desde el puerto serial para luego realizar una captura de la cámara, realizar el análisis con el modelo, mostrar en pantalla la captura tomada junto con la etiqueta y la caja que envuelve al objeto y, finalmente, emitir un mensaje con el resultado hacia el puerto serial. Adicionalmente, en pantalla se verá la confiabilidad que se tiene de la detección.
 
 ---
 
-# Conclusiones
+## Descripción de las funciones utilizadas.
+
+---
+
+# 8. Plano de planta
+
+---
+
+# 9. Esquemático de conexiones
+
+---
+
+
+# 10. Video de simulación
+
+---
+
+# 11. Video de implementación física
+
+---
+
+# 12. Conclusiones
 
 ---
 
