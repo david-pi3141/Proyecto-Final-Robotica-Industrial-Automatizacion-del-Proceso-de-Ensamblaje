@@ -57,6 +57,14 @@ Clasificación incierta → enviar a bandeja “Rechazo” o pedir confirmación
 
 # 2. Bitácora del desarrollo: decisiones, cambios, evidencias y resultados.
 
+## Arquitectura de comunicación
+## Soporte cámara
+## Diseño gripper
+## Conexiones sistema de control y potencia
+## Fuente de alimentación
+## Vision de maquina
+## Detección de componente
+
 ---
 
 # 3. Descripción de la solución planteada.
