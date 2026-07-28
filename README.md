@@ -67,10 +67,120 @@ Clasificación incierta → enviar a bandeja “Rechazo” o pedir confirmación
 
 ---
 
-# 5. Diagrama de flujo del proceso
+# 5. Diagramas de flujo del proceso
+
+Una vez conocido el proceso a realizar, se obtiene un diagrama de flujo de las rutinas y subprocesos que deberán ser realizados para cumplir con la tarea asignada. Ya que este es un proceso extenso, se realizará también el diagrama de flujo de algunas subrutinas, estas se mostrarán en color verde en bloques del diagrama principal, mostrado a continuación.
+
+Nota: El bloque "Esperar componente" implica que la banda transportadora está activa hasta que el sensor detecta la llegada del componente.
+
+```mermaid
+
+flowchart TD
+
+    A([Inicio])
+
+    B[Inicializar sistema]
+    C[Esperar botón Inicio]
+
+    D{¿Total < 30?}
+    D -- No --> P
+    P --> Q
+    Q --> R
+    R --> B
+
+    E[Esperar componente]
+    F[Capturar imagen]
+    G[Clasificar componente]
+    H[Confirmar clasificación]
+    I[Realizar Pick]
+    J[Aproximación Pick]
+    K[Confirmar Pick]
+    L[Realizar Place]
+    M[Confirmar Place]
+
+    N{¿Place OK?}
+
+    O[Actualizar inventario]
+    
+
+    P[Finalizar etapa]
+    Q[Esperar Reset]
+    R([Reiniciar proceso])
+
+    A --> B
+    B --> C
+    C --> D
+
+    D -- Sí --> E
+    E --> F
+    F --> G
+    G --> H
+    H --> I
+    I --> J
+    J --> K
+    K --> L
+    L --> M
+    M --> N
+
+    N -- Sí --> O
+    O --> D
+    
+
+    N -- No --> D
+
+    classDef subrutina fill:#C8E6C9,stroke:#2E7D32,stroke-width:2px;
+    class H,K,M subrutina;
 
 
-Modelos/simulaciones: RobotStudio (ABB), RoboDK (Yaskawa), EPSON RC+ (Epson).
+```
+
+
+```mermaid
+
+flowchart TD
+
+A([Inicio])
+
+B[Mostrar mensaje de espera de confirmación]
+
+C{¿El componente es correcto?}
+
+C -->|1: Sí| D
+D --> N
+N --> O
+
+
+D[Avanzar banda transportadora<br/>1.4 s]
+
+E[Retroceder banda<br/>1.5 s]
+
+F[Esperar componente]
+
+G[Capturar imagen]
+
+H[Clasificar componente]
+
+
+
+N[Reiniciar variable<br/>ConfirmarClasificación = 0]
+
+O([Fin])
+
+A --> B
+B --> C
+
+
+C -->|2: No| E
+E --> F
+F --> G
+G --> H
+H --> C
+
+C -->|3: Descartar| F
+
+
+
+```
 
 ---
 
