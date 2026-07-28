@@ -6,7 +6,7 @@
 <h1>Automatización del Proceso de Ensamblaje, Soldadura y Empaque de
 PCBs.</h1>
 
-<img src="images/abbs.jpeg" alt="ABB" style="border-radius: 50%; width: 400px;"><br>
+<img src="images/Foto.jpeg" alt="ABB" style="border-radius: 50%; width: 400px;"><br>
 
 <b>Figura 1. </b>
 
