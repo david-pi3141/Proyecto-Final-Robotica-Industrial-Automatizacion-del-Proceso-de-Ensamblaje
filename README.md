@@ -111,7 +111,7 @@ Como para la parte de recepción se necesitaba saber si el componente estaba en 
 
 <div align="center">
 
-<img src="images/sensor.jpeg" alt="ABB" style="border-radius: 50%; width: 400px;"><br>
+<img src="images/sensor.jpeg" alt="ABB" style="border-radius: 50%; width: 600px;"><br>
 
 <b>Figura 1. Manipuladores ABB IRB 140</b>
 
@@ -172,7 +172,7 @@ Acompañado de esto, se tomaron fotos de cada uno de los objetos ubicados en el 
 
 <div align="center">
 
-<img src="images/esquema.png" alt="ABB" style="border-radius: 50%; width: 400px;"><br>
+<img src="images/esquema.png" alt="ABB" style="border-radius: 50%; width: 600px;"><br>
 
 <b>Figura 8. Secciónes sistema solución</b>
 
@@ -184,7 +184,7 @@ La solución se inició con el desarrollo del código en RAPPID y su simulación
 
 <div align="center">
 
-<img src="images/simu.png" alt="ABB" style="border-radius: 50%; width: 400px;"><br>
+<img src="images/simu.png" alt="ABB" style="border-radius: 50%; width: 600px;"><br>
 
 <b>Figura 9. HMI implementada</b>
 
@@ -201,7 +201,7 @@ Con esto, el proceso automatizado quedó estructurado de la siguiente manera:
 
 <div align="center">
 
-<img src="images/real.jpeg" alt="ABB" style="border-radius: 50%; width: 400px;"><br>
+<img src="images/real.jpeg" alt="ABB" style="border-radius: 50%; width: 600px;"><br>
 
 <b>Figura 10. Simulación</b>
 
