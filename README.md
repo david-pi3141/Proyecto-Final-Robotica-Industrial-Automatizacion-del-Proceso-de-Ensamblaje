@@ -13,6 +13,7 @@ PCBs</h2>
 <h4>Integrantes del equipo: <br>
     Paula Nicole Quiroga Romero <br>
     Jesus David Sanchez Cobos <br>
+    David Santiago Piratque Suarez <br>
     David Steven Pinzón Hernández</h4>
 
 
@@ -832,7 +833,15 @@ Para la realización del esquema, se tuvo en cuenta la conexión entre el Arduin
 <b>Figura. Esquemático del circuito utilizado en el proyecto. </b>
 </p>
 
-Para consutar el esquema con mas detelle reviser el anexo: [Esquemático](Anexos/Esquematico-v1.pdf)
+Luego, la implementación física de esta conexión, particularmente la que involucra al Arduino, los relés y el optoacoplador, se montó sobre una tabla de madera, únicamente para evitar que se desconecten cables. Adicionalmente, se utilizó alambre de cable UTP para realizar la mayoría de las conexiones entre los diferentes elementos.
+
+<p align="center">
+<img src="images/Montaje.jpeg" width="350">
+<br>
+<b>Figura. Parte del circuito montado. </b>
+</p>
+
+Para consultar el esquema con más detalle, revise el anexo. [Esquemático](Anexos/Esquematico-v1.pdf)
 
 ---
 
