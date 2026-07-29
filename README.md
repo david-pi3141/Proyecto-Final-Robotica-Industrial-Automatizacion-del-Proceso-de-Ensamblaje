@@ -284,7 +284,7 @@ Para poder representar la herramienta dentro del entorno de simulación e integr
 | ![](https://github.com/david-pi3141/Proyecto-Final-Robotica-Industrial-Automatizacion-del-Proceso-de-Ensamblaje/raw/main/images/Gripper_Inventor_1.png) | ![](https://github.com/david-pi3141/Proyecto-Final-Robotica-Industrial-Automatizacion-del-Proceso-de-Ensamblaje/raw/main/images/Gripper_Inventor_2.png) |
 |---|---|
 
-**Figura. Modelado de la herramienta en Autodesk Inventor (`ElectroImanUnido.ipt`): vista general del conjunto y vista lateral del acople a la brida, usadas como base para la aproximación geométrica cargada en RobotStudio.**
+**Figura 16.1. Modelado de la herramienta en Autodesk Inventor (`ElectroImanUnido.ipt`): vista general del conjunto y vista lateral del acople a la brida, usadas como base para la aproximación geométrica cargada en RobotStudio.**
 
 ## Montaje sobre el efector final
 
@@ -293,7 +293,7 @@ La herramienta se fija a la brida del robot mediante un adaptador circular atorn
 | ![](https://github.com/david-pi3141/Proyecto-Final-Robotica-Industrial-Automatizacion-del-Proceso-de-Ensamblaje/raw/main/images/Gripper_Detalle_1.jpg) | ![](https://github.com/david-pi3141/Proyecto-Final-Robotica-Industrial-Automatizacion-del-Proceso-de-Ensamblaje/raw/main/images/Gripper_Detalle_2.jpg) | ![](https://github.com/david-pi3141/Proyecto-Final-Robotica-Industrial-Automatizacion-del-Proceso-de-Ensamblaje/raw/main/images/Gripper_Detalle_3.jpg) |
 |---|---|---|
 
-**Figura. Detalle del montaje de la herramienta sobre la brida del robot, incluyendo las marcas de referencia "1" y "X" usadas para garantizar la orientación correcta.**
+**Figura 16.2. Detalle del montaje de la herramienta sobre la brida del robot, incluyendo las marcas de referencia "1" y "X" usadas para garantizar la orientación correcta.**
 
 ## Verificación dimensional
 
@@ -302,14 +302,14 @@ Antes de definir el `tooldata` en el programa, se verificaron con calibrador dig
 | ![](https://github.com/david-pi3141/Proyecto-Final-Robotica-Industrial-Automatizacion-del-Proceso-de-Ensamblaje/raw/main/images/Gripper_Medida_1.jpg) | ![](https://github.com/david-pi3141/Proyecto-Final-Robotica-Industrial-Automatizacion-del-Proceso-de-Ensamblaje/raw/main/images/Gripper_Medida_2.jpg) |
 |---|---|
 
-**Figura. Verificación con calibrador digital del diámetro del adaptador de brida (56.96 mm) y del diámetro de los tornillos que sujetan el electroimán al acople (4.27 mm).**
+**Figura 16.3. Verificación con calibrador digital del diámetro del adaptador de brida (56.96 mm) y del diámetro de los tornillos que sujetan el electroimán al acople (4.27 mm).**
 
 Adicionalmente, se midieron las dimensiones propias del cuerpo del electroimán para contrastarlas con el modelado 3D aproximado utilizado en RobotStudio.
 
 | ![](https://github.com/david-pi3141/Proyecto-Final-Robotica-Industrial-Automatizacion-del-Proceso-de-Ensamblaje/raw/main/images/Gripper_Medida_3.jpg) | ![](https://github.com/david-pi3141/Proyecto-Final-Robotica-Industrial-Automatizacion-del-Proceso-de-Ensamblaje/raw/main/images/Gripper_Medida_4.jpg) | ![](https://github.com/david-pi3141/Proyecto-Final-Robotica-Industrial-Automatizacion-del-Proceso-de-Ensamblaje/raw/main/images/Gripper_Medida_5.jpg) |
 |---|---|---|
 
-**Figura. Medición de las dimensiones del electroimán: longitud del cuerpo (73.24 mm), ancho del cuerpo (31.74 mm) y espesor del cuerpo (26.33 mm).**
+**Figura 16.4. Medición de las dimensiones del electroimán: longitud del cuerpo (73.24 mm), ancho del cuerpo (31.74 mm) y espesor del cuerpo (26.33 mm).**
 
 ## Tornillería utilizada
 
