@@ -327,6 +327,7 @@ La sujeción del conjunto se realiza en dos etapas, cada una con un tornillo de 
 </div>
 
 
+---
 # 5. Diagramas de flujo del proceso
 
 Una vez definido el funcionamiento del sistema, se presentan los diagramas de flujo correspondientes a las rutinas y subprocesos que conforman el proceso de clasificación y almacenamiento de componentes. Debido a que el programa está estructurado de forma modular y contiene diversos procedimientos, además del diagrama de flujo principal se incluyen los diagramas de las subrutinas más relevantes para facilitar la comprensión de la lógica implementada. En el diagrama principal, dichas subrutinas se resaltan mediante bloques de color verde.
