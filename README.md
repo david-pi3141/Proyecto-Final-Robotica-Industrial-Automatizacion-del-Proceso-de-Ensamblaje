@@ -989,3 +989,27 @@ Video que muestra la ejecución real del proceso sobre el robot ABB IRB 140 "Ca�
 ---
 
 # Referencias
+
+[1] ABB, “IRB 140 Industrial Robot.” [En línea]. Disponible en:
+https://new.abb.com/products/robotics/es/robots/robots-industriales/irb-140
+[Accedido: 28-Jul-2026].
+
+[2] P. Corke, “Robotics Toolbox for MATLAB.” [En línea]. Disponible en:
+https://petercorke.com/toolboxes/robotics-toolbox/
+[Accedido: 28-Jul-2026].
+
+[3] ROBOTIS, “DYNAMIXEL AX-12A e-Manual.” [En línea]. Disponible en:
+https://emanual.robotis.com/docs/en/dxl/ax/ax-12a/
+[Accedido: 28-Jul-2026].
+
+[4] Ultralytics, “Ultralytics YOLO Documentation.” [En línea]. Disponible en:
+https://docs.ultralytics.com/
+[Accedido: 28-Jul-2026].
+
+[5] Ultralytics, “Ultralytics GitHub Repository.” [En línea]. Disponible en:
+https://github.com/ultralytics/ultralytics
+[Accedido: 28-Jul-2026].
+
+[6] OpenCV Team, “OpenCV Documentation.” [En línea]. Disponible en:
+https://docs.opencv.org/
+[Accedido: 28-Jul-2026].
