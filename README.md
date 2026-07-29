@@ -230,7 +230,7 @@ Para la manipulación de los componentes electrónicos (resistencias, capacitore
 [![](https://github.com/david-pi3141/Proyecto-Final-Robotica-Industrial-Automatizacion-del-Proceso-de-Ensamblaje/raw/main/images/Plano_Gripper.png)](/david-pi3141/Proyecto-Final-Robotica-Industrial-Automatizacion-del-Proceso-de-Ensamblaje/blob/main/images/Plano_Gripper.png)  
 **Figura. Plano de la herramienta electroimán, con vista frontal (patrón de sujeción a la brida, R28.48 mm de radio de ubicación de tornillos, R3 mm de redondeo), vista lateral (espesor de 10 mm y longitud total de 73.24 mm) y vista isométrica del conjunto.**
 
-El plano recoge las cotas verificadas físicamente con calibrador (26.33 mm de ancho, 31.74 mm de profundidad, 73.24 mm de longitud total), y define el patrón circular de 4 tornillos con el que la herramienta se acopla a la brida del robot. Todas las medidas están en milímetros. El plano completo en formato PDF puede consultarse en [`Plano_Gripper.pdf`](./Anexos/Plano_Gripper.pdf).
+El plano recoge las cotas verificadas físicamente con calibrador (26.33 mm de ancho, 31.74 mm de profundidad, 73.24 mm de longitud total), y define el patrón circular de 4 tornillos con el que la herramienta se acopla a la brida del robot. Todas las medidas están en milímetros. El plano completo en formato PDF puede consultarse en [`Plano_Gripper.pdf`](./Anexos/Herramienta Electroimán.pdf).
 
 ## Modelado 3D (aproximación para RobotStudio)
 
