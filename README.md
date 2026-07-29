@@ -60,7 +60,7 @@ Durante la operación pueden presentarse diferentes situaciones que deben ser co
 Originalmente, la idea para conseguir que el robot fuese capaz de actuar en consecuencia a un reconocimiento de objetos era usar un servidor de Ignition, la cual es una plataforma de software para automatización industrial. Este servidor permitiría conectar un modelo de visión de máquina a un IOT gateway de Robot Studio. Este modelo sería programado y ejecutado en Matlab usando imágenes propias tomadas con la cámara a utilizar en el espacio de trabajo. La intención de hacer esto era que el modelo fuese capaz de hacer la clasificación y, adicionalmente, entregar la posición del objeto respecto a la cámara para luego encontrar la posición del objeto respecto al robot.
 
 <p align="center">
-<img src="images/arquitectura_inicial.png" width="350">
+<img src="images/Arquitectura_inicial.png" width="350">
 <br>
 <b>Figura. Primera arquitectura planteada. </b>
 </p>
