@@ -737,7 +737,9 @@ En la función loop, donde se encuentra el programa principal, se parte de revis
 
 # 8. Plano de planta
 
----
+El plano de planta define la disposición física de la celda robotizada correspondiente a la Etapa 1. El robot ABB IRB 140 se ubica en el centro de la celda, entre la Banda Transportadora 1 (entrada de componentes) y la Banda Transportadora 2, con la cámara montada justo sobre el punto de recepción para realizar la clasificación visual. A la derecha del manipulador se encuentran las cajas de recolección, que representan las celdas del almacén ordenado, y una mesa de apoyo. El área de control del robot ABB se dispone en la parte posterior de la celda, fuera del espacio de trabajo del manipulador. Todas las medidas del plano están expresadas en milímetros.
+
+El plano completo puede consultarse en [`Plano_Planta.pdf`](./Anexos/Plano_Planta.pdf).
 
 # 9. Esquemático de conexiones
 
