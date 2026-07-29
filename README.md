@@ -105,6 +105,35 @@ Como se contaba al inicio con la “webcam HD C270” se diseñó e imprimió un
 
 ## Diseño gripper
 
+Antes de llegar a la solución final descrita en la Sección 4, se evaluó una primera alternativa de gripper basada en un electroimán de 12 V.
+
+<p align="center">
+<img src="images/Electroiman_12V.png" width="300">
+<br>
+<b>Figura 8. Electroimán de 12V considerado inicialmente.</b>
+</p>
+
+Para integrar este electroimán al robot, se diseñó en CAD un acople preliminar que permitiera fijarlo a la brida del manipulador, el cual fue posteriormente fabricado mediante impresión 3D para realizar pruebas físicas de montaje y sujeción.
+
+<div align="center">
+
+<table>
+  <tr>
+    <td align="center">
+      <img src="images/Acople_Preliminar_CAD.png" width="300"><br>
+      <b>Figura 9. Modelo CAD del acople preliminar para el electroimán de 12V.</b>
+    </td>
+    <td align="center">
+      <img src="images/Acople_Preliminar_Impreso.jpg" width="300"><br>
+      <b>Figura 10. Acople preliminar fabricado mediante impresión 3D.</b>
+    </td>
+  </tr>
+</table>
+
+</div>
+
+La forma del acople fue pensda para poder poder acceder a la camara en una disposición diferente sin tener que mover la banda.Sin embargo, al realizar las pruebas de sujeción se determinó que la fuerza magnética entregada por este electroimán no era suficiente para levantar y sostener de forma confiable los componentes electrónicos durante la operación de Pick, por lo que esta alternativa fue descartada. Finalmente, se optó por el electroimán y el acople descritos en la Sección 4, donde se detalla su selección, diseño y verificación dimensional.
+
 
 ## Detección de componente
 
