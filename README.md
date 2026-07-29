@@ -969,13 +969,22 @@ Para consultar el esquema con más detalle, revise el anexo. [Esquemático](Anex
 
 # 10. Video de simulación
 
-[![Ver video en YouTube](https://img.shields.io/badge/-VER_VIDEO_EN_YOUTUBE-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://www.youtube.com/watch?v=sp3Va0xPWoQ)
+Video que muestra la simulación del proceso de clasificación y almacenamiento de componentes en RobotStudio, validando la secuencia de movimientos del robot ABB IRB 140 "Caín" antes de la implementación física.
+
+<p align="center">
+<a href="https://www.youtube.com/watch?v=sp3Va0xPWoQ"><img src="https://img.shields.io/badge/-VER_VIDEO_EN_YOUTUBE-FF0000?style=for-the-badge&logo=youtube&logoColor=white" /></a>
+</p>
 
 ---
 
 # 11. Video de implementación física
 
-[![Ver video en YouTube](https://img.shields.io/badge/-VER_VIDEO_EN_YOUTUBE-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://www.youtube.com/watch?v=KdvNrrpuJQg)
+Video que muestra la ejecución real del proceso sobre el robot ABB IRB 140 "Caín", integrando el sistema de visión por YOLO y la comunicación con Arduino para la clasificación y almacenamiento de componentes.
+
+<p align="center">
+<a href="https://www.youtube.com/watch?v=KdvNrrpuJQg"><img src="https://img.shields.io/badge/-VER_VIDEO_EN_YOUTUBE-FF0000?style=for-the-badge&logo=youtube&logoColor=white" /></a>
+</p>
+
 
 ---
 
