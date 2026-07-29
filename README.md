@@ -325,7 +325,7 @@ La sujeción del conjunto se realiza en dos etapas, cada una con un tornillo de 
 <b>**Figura 17. Herramienta final ensamblada, lista para su instalación en el robot.**</b>
 
 </div>
----
+
 
 # 5. Diagramas de flujo del proceso
 
