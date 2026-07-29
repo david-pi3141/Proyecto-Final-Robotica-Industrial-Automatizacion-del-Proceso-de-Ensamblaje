@@ -3,14 +3,21 @@
 
 <h3>Proyecto Final - Robótica Industrial</h3>
 
-<h2>Proyecto Final - Robótica Industrial</h2>
+<h2>Automatización del Proceso de Ensamblaje, Soldadura y Empaque de
+PCBs</h2>
 
-<h1>Automatización del Proceso de Ensamblaje, Soldadura y Empaque de
-PCBs.</h1>
+<h1>Etapa 1 – Recepción, clasificación y ordenamiento</h1>
 
-<img src="images/Foto.jpeg" alt="ABB" style="border-radius: 50%; width: 400px;"><br>
+<h2>Profesores: <br>Pedro Fabián Cárdenas Herrera <br> Manuel Felipe Carranza Montenegro</h2>
 
-<b>Figura 1. </b>
+<h4>Paula Nicole Quiroga Romero <br>
+    Jesus David Sanchez Cobos <br>
+    David Steven Pinzón Hernández</h4>
+
+
+<img src="images/Foto.jpeg" alt="ABB" style="border-radius: 50%; width: 500px;"><br>
+
+<b>Figura 1. Montaje de la celda robótica de la etapa 1</b>
 
 </div>
 
