@@ -967,16 +967,15 @@ Para consultar el esquema con más detalle, revise el anexo. [Esquemático](Anex
 
 ---
 
-
 # 10. Video de simulación
 
-[Simulación](https://www.youtube.com/watch?v=sp3Va0xPWoQ)
+[![Ver video en YouTube](https://img.shields.io/badge/-VER_VIDEO_EN_YOUTUBE-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://www.youtube.com/watch?v=sp3Va0xPWoQ)
 
 ---
 
 # 11. Video de implementación física
 
-[Implementación](https://www.youtube.com/watch?v=KdvNrrpuJQg)
+[![Ver video en YouTube](https://img.shields.io/badge/-VER_VIDEO_EN_YOUTUBE-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://www.youtube.com/watch?v=KdvNrrpuJQg)
 
 ---
 
