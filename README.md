@@ -3,6 +3,8 @@
 
 <h3>Proyecto Final - Robótica Industrial</h3>
 
+<h2>Proyecto Final - Robótica Industrial</h2>
+
 <h1>Automatización del Proceso de Ensamblaje, Soldadura y Empaque de
 PCBs.</h1>
 
