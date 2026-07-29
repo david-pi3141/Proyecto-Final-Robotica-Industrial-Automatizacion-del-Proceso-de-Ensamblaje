@@ -228,6 +228,14 @@ Con el fin de incrementar la confiabilidad del sistema, se implementaron mecanis
 
 </div>
 
+## Alimentación y control del electroimán
+
+El electroimán seleccionado para la herramienta final opera a **12 V**, por lo que su alimentación se realizó mediante una **fuente de poder externa de 12 V**, independiente de la alimentación de 24 V que manejan las entradas/salidas digitales del controlador IRC5 del robot (ver Sección 2, "Conexiones sistema de control y potencia").
+
+Dado que la señal digital de salida del controlador (`DO_06`, empleada en el programa RAPID para activar y desactivar la herramienta) opera a 24 V, no fue posible conectar esta señal directamente a la bobina del electroimán de 12 V. Por esta razón, se incorporó un **relé** como elemento de interfaz entre ambos niveles de tensión: la salida `DO_06` del controlador excita la bobina del relé, y este, a su vez, conecta o desconecta la fuente de 12 V hacia el electroimán, imantándolo o desimantándolo según se requiera sujetar o liberar el componente.
+
+Esta interfaz mediante relé introduce una **lógica negada** entre la señal del controlador y el estado real del electroimán, la cual se refleja directamente en el programa RAPID: la instrucción `Reset DO_06` es la que **activa (imanta)** el electroimán para sujetar el componente (usada en `RealizarPick`), mientras que `Set DO_06` es la que **desactiva (desimanta)** el electroimán para liberarlo (usada en `Path_12` a `Path_15` al depositar en el almacén, y en `InicializarSistema`/`RevisarEmergencia`/`FinEtapa` para dejar la herramienta en un estado seguro sin sujetar ninguna pieza).
+
 ## Plano de la herramienta
 
 <div align="center">
@@ -288,7 +296,6 @@ La sujeción del conjunto se realiza en dos etapas, cada una con un tornillo de 
 <b>**Figura. Herramienta final ensamblada, lista para su instalación en el robot.**</b>
 
 </div>
-
 ---
 
 # 5. Diagramas de flujo del proceso
