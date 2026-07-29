@@ -179,19 +179,21 @@ La solución se inició con el desarrollo del código en RAPPID y su simulación
 
 Con esto, el proceso automatizado quedó estructurado de la siguiente manera:
 
-- **Protecciones**
-- 1.	Inicialización
-1. 	
+1. Inicialización
+
+
+3. s
+4. 
 El proceso inicia con la inicialización del robot y la verificación de que todos los dispositivos se encuentran en un estado seguro para comenzar la operación. Posteriormente, la banda transportadora permanece en movimiento hasta que el sensor detecta la presencia de un componente en la zona de recolección.
-2.	Recepción
+5.	Recepción
 El sensor detecta el componente, lo que detiene la banda transportadora y envía una señal para que la cámara tome la foto.
-3.	Clasificación
+6.	Clasificación
 Una vez detectado el componente, el robot espera la clasificación la cual ocurre en un computador externo a través de un algoritmo de visión de máquina que es capaz de determinar el tipo de elemento presente. Dependiendo del resultado obtenido, el sistema solicita una confirmación del operador mediante la interfaz HMI antes de continuar con el proceso de manipulación.
-4.	Pick
+7.	Pick
 Después de validar la clasificación, la banda se mueve para ubicar el componente en el área de PICK evitando que la cámara interfiera este proceso, siguiendo esto, el robot realiza la operación de Pick, primero con un acercamiento a 5 cm verticalmente para luego acercase a una menor velocidad al componente, igualmente espera confirmación del operador.
-5.	Place
+8.	Place
 Con la confirmación de PICK se ejecuta la trayectoria correspondiente para depositarlo en la celda asignada dentro del almacén y es se espera confirmación del usuario. 
-6.	Fin y reinicio de rutina
+9.	Fin y reinicio de rutina
 Con esta última confirmación, el robot vuelve a HOME y el proceso anterior inicia nuevamente, esperando a que el sensor detecte otro componente, este ciclo se repite hasta completar el objetivo, el cual es almacenar 30 componentes, al cumplir la meta, se detienen todos los dispositivos y se espera a que el operario inicie un nuevo almacén. 
 Manejo de fallas
 Con el fin de incrementar la confiabilidad del sistema, se implementaron mecanismos de verificación para ciertas etapas del proceso. 
