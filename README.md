@@ -169,6 +169,14 @@ Acompañado de esto, se tomaron fotos de cada uno de los objetos ubicados en el 
 
 # 3. Descripción de la solución planteada.
 
+<div align="center">
+
+<img src="images/abbs.jpeg" alt="ABB" style="border-radius: 50%; width: 400px;"><br>
+
+<b>Figura 1. Manipuladores ABB IRB 140</b>
+
+</div>
+
 Con todo lo anterior, la solución se organizó en cuatro secciones: recepción, clasificación, Pick y place, y el control de la ejecución del sistema se concentró en la HMI que se diseñó en ScreenMaker de RobotStudio para finalmente ser implementada en el teachpendant del robot. Desde esta interfaz, se le permite al usuario, iniciar y parar la rutina, conocer el estado actual tanto de la rutina como del proceso y realizar las verificaciones requeridas en las etapas de clasificación, pick y place. Además, al terminar un almacén se permite iniciar uno nuevo. 
 
 La solución se inició con el desarrollo del código en RAPPID y su simulación en RobotStudio, y a la par se trabajó en las conexiones físicas, en la clasificación por visión de máquina, y en el diseño e impresión 3D de los soportes; con cada parte funcionando se realizaron pruebas individuales, para verificar la conexiones, puntos de acercamiento del robot, la correcta clasificación de componentes y finalmente se cargó el código y la HMI en el controlador físico, para la ejecución de la rutina con el robot.  
