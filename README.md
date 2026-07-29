@@ -181,7 +181,7 @@ Con esto, el proceso automatizado quedó estructurado de la siguiente manera:
 
 1. Inicialización
 
-
+El proceso inicia con la inicialización del robot y la verificación de que todos los dispositivos se encuentran en un estado seguro para comenzar la operación. Posteriormente, la banda transportadora permanece en movimiento hasta que el sensor detecta la presencia de un componente en la zona de recolección.
 3. s
 4. 
 El proceso inicia con la inicialización del robot y la verificación de que todos los dispositivos se encuentran en un estado seguro para comenzar la operación. Posteriormente, la banda transportadora permanece en movimiento hasta que el sensor detecta la presencia de un componente en la zona de recolección.
