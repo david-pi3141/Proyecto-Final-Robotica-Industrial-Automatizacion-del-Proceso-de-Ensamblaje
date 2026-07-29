@@ -737,9 +737,12 @@ En la función loop, donde se encuentra el programa principal, se parte de revis
 
 # 8. Plano de planta
 
-El plano de planta define la disposición física de la celda robotizada correspondiente a la Etapa 1. El robot ABB IRB 140 se ubica en el centro de la celda, entre la Banda Transportadora 1 (entrada de componentes) y la Banda Transportadora 2, con la cámara montada justo sobre el punto de recepción para realizar la clasificación visual. A la derecha del manipulador se encuentran las cajas de recolección, que representan las celdas del almacén ordenado, y una mesa de apoyo. El área de control del robot ABB se dispone en la parte posterior de la celda, fuera del espacio de trabajo del manipulador. Todas las medidas del plano están expresadas en milímetros.
+[![](https://github.com/david-pi3141/Proyecto-Final-Robotica-Industrial-Automatizacion-del-Proceso-de-Ensamblaje/raw/main/images/Plano.png)](/david-pi3141/Proyecto-Final-Robotica-Industrial-Automatizacion-del-Proceso-de-Ensamblaje/blob/main/images/Plano.png)  
+**Figura. Plano de planta de la celda robotizada – Etapa 1.**
 
-El plano completo puede consultarse en [`Plano_Planta.pdf`](./Anexos/Plano_Planta.pdf).
+El plano de planta define la disposición física de la celda robotizada correspondiente a la Etapa 1. El robot ABB IRB 140 se ubica en el centro de la celda, entre la Banda Transportadora 1 (entrada de componentes) y la Banda Transportadora 2, con el sensor infrarrojo y la cámara montados sobre el punto de recepción: el primero detecta la presencia del componente y dispara la captura de la imagen para su clasificación visual. A la derecha del manipulador se encuentran las cajas de recolección, que representan las celdas del almacén ordenado, y una mesa de apoyo. El área de control del robot ABB se dispone en la parte posterior de la celda, fuera del espacio de trabajo del manipulador. Todas las medidas del plano están expresadas en milímetros.
+
+El plano completo en formato PDF puede consultarse en [`Plano_Planta.pdf`](./Anexos/Plano_Planta.pdf).
 
 # 9. Esquemático de conexiones
 
