@@ -90,11 +90,11 @@ Como se contaba al inicio con la “webcam HD C270” se diseñó e imprimió un
   <tr>
     <td align="center">
       <img src="images/webcam.webp" width="250"><br>
-      <b>Figura 2. Modelado herramienta</b>
+      <b>Figura 3. Webcam HD C270</b>
     </td>
     <td align="center">
       <img src="images/soporte.png" width="250"><br>
-      <b>Figura 3. Diseño decoración</b>
+      <b>Figura 4. Diseño soporte cámara</b>
     </td>
   </tr>
 </table>
@@ -133,7 +133,7 @@ Inicialmente, se intentó hacer uso del modelo Net8 para realizar la clasificaci
 <p align="center">
 <img src="images/Primer_Dat.png" width="350">
 <br>
-<b>Figura. Etiquetado del primer Dataset. </b>
+<b>Figura 5. Etiquetado del primer Dataset. </b>
 </p>
 
 En consecuencia, se intentó realizar un etiquetado para intentar usar este primer dataset con YOLO, haciendo uso de un script de Python, el cual asignó una etiqueta automáticamente según la clase. Sin embargo, tantas imágenes dificultaron el entrenamiento del modelo. Adicionalmente, se presentó el problema de que este dataset contiene imágenes donde el objeto a identificar ocupa la mayoría de la misma, situación que no se presenta en nuestro escenario. Este problema provocó que, al intentar realizar reentrenamiento del modelo "yolo11x-cls.pt", este tomase parte del fondo como información importante para reconocer la clase de la imagen. Por lo tanto, se optó por cambiar el tipo de detección a emplear, decidiendo así usar YOLO en modo detector para realizar el entrenamiento.
@@ -153,7 +153,7 @@ En consecuencia, se intentó realizar un etiquetado para intentar usar este prim
     </tr>
   </table>
   <br>
-  <b>Figura . </b> Entrenamiento con yolo11x: (a) Imágen del entrenamiento y (b) Matriz de confusión.
+  <b>Figura 6. </b> Entrenamiento con yolo11x: (a) Imágen del entrenamiento y (b) Matriz de confusión.
 </div>
 
 En la imagen que se muestra arriba, se puede observar cómo el entrenamiento tomó una imagen sin ningún objeto como parte de una clase; además, en la imagen que se encuentra al lado, se observa la matriz de confusión que se genera de forma automática al usar YOLO. Esta matriz nos muestra que únicamente está reconociendo los objetos nulos, y los reconoce como conectores. Independientemente de la interpretación del resultado en particular, la conclusión principal es que no está realizando correctamente el entrenamiento. Probablemente por dos razones. La primera es por errores en el etiquetado, ya que se hizo de forma automática, y la segunda por el tipo de imagen que se está usando. 
@@ -161,7 +161,7 @@ En la imagen que se muestra arriba, se puede observar cómo el entrenamiento tom
 <p align="center">
 <img src="images/Roboflow.png" width="350">
 <br>
-<b>Figura. Datasets empleados para el entrenamiento. </b>
+<b>Figura 7. Datasets empleados para el entrenamiento. </b>
 </p>
 
 Acompañado de esto, se tomaron fotos de cada uno de los objetos ubicados en el sitio. Durante este proceso observamos que la iluminación estaba afectando la calidad de la imagen, además del contraste que se produce en la misma. Para tratar de solucionar el problema de la iluminación, se probó colocar un objeto entre la fuente de luz y el sitio donde estaba el objeto, pero esto no dio muy buenos resultados. Lo segundo que se probó fue cambiar la configuración de la cámara, bajándole el brillo y un poco el contraste. Finalmente, una solución que se encontró fue dejar debajo del objeto una superficie blanca o clara grande, para que el contraste de la cámara permita distinguir el objeto.
@@ -174,7 +174,7 @@ Acompañado de esto, se tomaron fotos de cada uno de los objetos ubicados en el 
 
 <img src="images/esquema.png" alt="ABB" style="border-radius: 50%; width: 400px;"><br>
 
-<b>Figura 1. Manipuladores ABB IRB 140</b>
+<b>Figura 8. Secciónes sistema solución</b>
 
 </div>
 
@@ -184,9 +184,11 @@ La solución se inició con el desarrollo del código en RAPPID y su simulación
 
 <div align="center">
 
-<img src="images/esquema.png" alt="ABB" style="border-radius: 50%; width: 400px;"><br>
+<img src="images/simu.png" alt="ABB" style="border-radius: 50%; width: 400px;"><br>
 
-<b>Figura 1. Manipuladores ABB IRB 140</b>
+<b>Figura 9. HMI implementada</b>
+
+</div>
 
 Con esto, el proceso automatizado quedó estructurado de la siguiente manera:
 
@@ -199,9 +201,11 @@ Con esto, el proceso automatizado quedó estructurado de la siguiente manera:
 
 <div align="center">
 
-<img src="images/esquema.png" alt="ABB" style="border-radius: 50%; width: 400px;"><br>
+<img src="images/real.jpeg" alt="ABB" style="border-radius: 50%; width: 400px;"><br>
 
-<b>Figura 1. Manipuladores ABB IRB 140</b>
+<b>Figura 10. Simulación</b>
+
+</div>
 
 **Manejo de fallas**
 
@@ -756,7 +760,7 @@ Para poder realizar la clasificación de los cuatro objetos, hicimos uso de visi
 <p align="center">
 <img src="images/Roboflow.png" width="350">
 <br>
-<b>Figura. Datasets empleados para el entrenamiento. </b>
+<b>Figura 11. Datasets empleados para el entrenamiento. </b>
 </p>
 
 Luego de tomar las fotos, se procedió a etiquetarlas, para indicar a qué objeto corresponde cada foto, además de indicar la región de la imagen donde se encuentra, esto para evitar que tome parte del fondo para reconocer el objeto. Esta tarea se realizó en la plataforma Roboflow. El primer dataset contiene en total 87 imágenes, y el segundo contiene 174 imágenes. Luego se aplica data augmentation para darle más variedad al dataset. Este dataset se descarga para luego usarlo de manera local para el entrenamiento.
@@ -776,7 +780,7 @@ El último entrenamiento realizado ofreció la siguiente matriz de confusión. E
 <p align="center">
 <img src="images/Matriz_final.png" width="350">
 <br>
-<b>Figura. Matriz de confusión final. </b>
+<b>Figura 12. Matriz de confusión final. </b>
 </p>
 
 Para usar la detección ya con la cámara, se utiliza el programa camara_deteccion.py; este no contiene funciones propias en su código, únicamente se ejecuta de manera secuencial. En este código se encuentra un bucle while que se encarga de estar constantemente leyendo el puerto serial, esperando el mensaje “IR”; en el momento que recibe este mensaje, procede a tomar una captura de la cámara usando el método cap.read(). Tras realizar la captura, se procede a realizar el análisis con el modelo previamente cargado desde el entrenamiento. Tras usar el modelo para reconocer algún objeto, se guarda la imagen de los resultados y luego se evalúa la condición de que si se detectase algún objeto en la captura. En caso de que no, entonces se emite un mensaje indicando que no se detectó ningún objeto. En el caso contrario, entonces, del mejor resultado se extrae la clase identificada y su confiabilidad. Dado que la numeración que realiza YOLO de las clases es diferente a la numeración que recibe el Arduino para distinguir a qué clase corresponde la clase, es necesario sumarle 1 al valor que obtiene YOLO. Luego de imprimir en consola el nombre de la clase, la confianza y el número de la clase, se envía por serial al Arduino este número. Para evitar que haya problemas en la comunicación y que no reciba nuevamente el mensaje IR, se debe configurar un ciclo while que espera a recibir el mensaje “Recibido” desde el Arduino. Cuando recibe este mensaje, muestra en pantalla una imagen con la clasificación realizada, junto con su confiabilidad y con la caja envolvente.
@@ -814,7 +818,7 @@ Para usar la detección ya con la cámara, se utiliza el programa camara_detecci
     </tr>
   </table>
   <br>
-  <b>Figura . </b> Evidencias de detección: (a) Nulo, (b) Capacitor, (c) Conector, (d) Resistencia y (e) Circuito Integrado.
+  <b>Figura 13. </b> Evidencias de detección: (a) Nulo, (b) Capacitor, (c) Conector, (d) Resistencia y (e) Circuito Integrado.
 </div>
 
 
@@ -829,7 +833,8 @@ En la función loop, donde se encuentra el programa principal, se parte de revis
 # 8. Plano de planta
 
 [![](https://github.com/david-pi3141/Proyecto-Final-Robotica-Industrial-Automatizacion-del-Proceso-de-Ensamblaje/raw/main/images/Plano.png)](/david-pi3141/Proyecto-Final-Robotica-Industrial-Automatizacion-del-Proceso-de-Ensamblaje/blob/main/images/Plano.png)  
-**Figura. Plano de planta de la celda robotizada – Etapa 1.**
+
+**Figura 14. Plano de planta de la celda robotizada – Etapa 1.**
 
 El plano de planta define la disposición física de la celda robotizada correspondiente a la Etapa 1. El robot ABB IRB 140 se ubica en el centro de la celda, entre la Banda Transportadora 1 (entrada de componentes) y la Banda Transportadora 2, con el sensor infrarrojo y la cámara montados sobre el punto de recepción: el primero detecta la presencia del componente y dispara la captura de la imagen para su clasificación visual. A la derecha del manipulador se encuentran las cajas de recolección, que representan las celdas del almacén ordenado, y una mesa de apoyo. El área de control del robot ABB se dispone en la parte posterior de la celda, fuera del espacio de trabajo del manipulador. Todas las medidas del plano están expresadas en milímetros.
 
@@ -842,7 +847,7 @@ Para la realización del esquema, se tuvo en cuenta la conexión entre el Arduin
 <p align="center">
 <img src="images/Esquemático.png" width="350">
 <br>
-<b>Figura. Esquemático del circuito utilizado en el proyecto. </b>
+<b>Figura 15. Esquemático del circuito utilizado en el proyecto. </b>
 </p>
 
 Para consutar el esquema con mas detelle reviser el anexo: [Esquemático](Anexos/Esquematico-v1.pdf)
@@ -859,10 +864,6 @@ Para consutar el esquema con mas detelle reviser el anexo: [Esquemático](Anexos
 # 11. Video de implementación física
 
 [Implementación](https://www.youtube.com/watch?v=KdvNrrpuJQg)
-
----
-
-# 12. Conclusiones
 
 ---
 
