@@ -222,9 +222,9 @@ Con el fin de incrementar la confiabilidad del sistema, se implementaron mecanis
 
 <div align="center">
 
-<img src="images/Gripper_Montado.jpg" alt="ABB" style="border-radius: 50%; width: 600px;"><br>
+<img src="images/Gripper_Montado.jpg" alt="ABB" style="border-radius: 50%; width: 450px;"><br>
 
-<b>**Figura. Plano de la herramienta electroimán, con vista frontal (patrón de sujeción a la brida, R28.48 mm de radio de ubicación de tornillos, R3 mm de redondeo), vista lateral (espesor de 10 mm y longitud total de 73.24 mm) y vista isométrica del conjunto.**</b>
+<b>**Figura. Herramienta (electroimán) montada en el efector final del robot ABB IRB 140.**</b>
 
 </div>
 
