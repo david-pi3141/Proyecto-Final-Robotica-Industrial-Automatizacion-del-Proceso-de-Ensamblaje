@@ -24,9 +24,6 @@ PCBs</h2>
 
 ---
 
-Proyecto para la asignatura Robótica (2016770) Universidad Nacional de Colombia
-
-
 # 1. Descripción del proyecto
 
 ## Contexto general
@@ -65,6 +62,8 @@ Durante la operación pueden presentarse diferentes situaciones que deben ser co
 
 # 2. Bitácora del desarrollo: decisiones, cambios, evidencias y resultados.
 
+Teniendo en cuenta el proceso a automatizar y los requerimientos, inicialmente se plantearon distintas ideas de solución, las cuales fueron modificadas o descartadas a medida que avanzó el desarrollo del proyecto.
+
 ## Arquitectura de comunicación
 
 Originalmente, la idea para conseguir que el robot fuese capaz de actuar en consecuencia a un reconocimiento de objetos era usar un servidor de Ignition, la cual es una plataforma de software para automatización industrial. Este servidor permitiría conectar un modelo de visión de máquina a un IOT gateway de Robot Studio. Este modelo sería programado y ejecutado en Matlab usando imágenes propias tomadas con la cámara a utilizar en el espacio de trabajo. La intención de hacer esto era que el modelo fuese capaz de hacer la clasificación y, adicionalmente, entregar la posición del objeto respecto a la cámara para luego encontrar la posición del objeto respecto al robot.
@@ -72,7 +71,7 @@ Originalmente, la idea para conseguir que el robot fuese capaz de actuar en cons
 <p align="center">
 <img src="images/Arquitectura_inicial.png" width="500">
 <br>
-<b>Figura. Primera arquitectura planteada. </b>
+<b>Figura 2. Primera arquitectura planteada. </b>
 </p>
 
 Luego de tener la posición respecto al robot, el programa en RAPID que corre el controlador IRC5 recibiría esta clasificación y posición para adaptar sus movimientos con el fin de que el gripper (electroimán) recogiera el objeto en el punto exacto donde se encuentra. Evitando así otros movimientos adicionales.
@@ -82,9 +81,50 @@ Sin embargo, por cuestiones de experiencia con este tipo de implementación, y p
 Por otro lado, se decidió hacer uso de Python en lugar de MATLAB, dado que ya existía una experiencia previa con su uso para este tipo de aplicación.
 
 ## Soporte cámara
+
+Como se contaba al inicio con la “webcam HD C270” se diseñó e imprimió un soporte para esta, sin embargo, el modelo de la cámara se cambió por la “webcam 720P” y al montarla se observó que la cercanía al objeto no permitía una buena resolución, por lo que, por tiempo y flexibilidad se utilizó un trípode como soporte, lo que permitió graduar la distancia fácilmente. 
+
+<table>
+  <tr>
+    <td align="center">
+      <img src="images/disenomar.png" width="250"><br>
+      <b>Figura 2. Modelado herramienta</b>
+    </td>
+    <td align="center">
+      <img src="images/Dibujopastel.png" width="250"><br>
+      <b>Figura 3. Diseño decoración</b>
+    </td>
+    <td align="center">
+      <img src="images/disenopas.png" width="250"><br>
+      <b>Figura 4. Modelado torta</b>
+    </td>
+  </tr>
+</table>
+
 ## Diseño gripper
+
+
+## Detección de componente
+
+Como para la parte de recepción se necesitaba saber si el componente estaba en el área de pick, se requería un sensor que lo detectara mientras este iba por la banda, con las opciones disponibles se definió utilizar un sensor infrarrojo, pero por el tamaño de los componentes este no los detectaba, por ello fue necesario implementar unas bases lo suficientemente altas.
+
+<div align="center">
+
+<img src="images/abbs.jpeg" alt="ABB" style="border-radius: 50%; width: 400px;"><br>
+
+<b>Figura 1. Manipuladores ABB IRB 140</b>
+
+</div>
+
+
 ## Conexiones sistema de control y potencia
+
+	Al momento de plantear conexiones entre el Arduino UNO y el controlado del robot IRC5, se consideró la diferencia en los niveles de tensión de operación, ya que el Arduino trabaja con señales de 5 V, mientras que las entradas y salidas digitales del controlador operan a 24 V, por tanto, se utilizaron relés para enviar señales del Arduino UNO al controlador del robot para la clasificación de componentes y un optoacoplador en sentido inverso.
+
 ## Fuente de alimentación
+
+Para evitar algún daño en el sistema eléctrico del robot, debido a las incertidumbres de las conexiones se utilizó una fuente externa de 24V para las señales del relé. 
+
 ## Vision de maquina
 
 Inicialmente, se intentó hacer uso del modelo Net8 para realizar la clasificación, haciendo uso de un dataset que se encuentra disponible en [Dataset](https://www.kaggle.com/datasets/julioazancort/basic-electronic-components), el cual contiene aproximadamente 8000 imágenes, clasificadas en cinco clases: Capacitor, Dataset_Treino, IC, Resistor, Transistor. Aunque con imágenes similares el modelo detectó correctamente la clase, al probarlo con las imágenes de nuestro escenario real, realizó mal la clasificación.
@@ -125,11 +165,45 @@ En la imagen que se muestra arriba, se puede observar cómo el entrenamiento tom
 
 Acompañado de esto, se tomaron fotos de cada uno de los objetos ubicados en el sitio. Durante este proceso observamos que la iluminación estaba afectando la calidad de la imagen, además del contraste que se produce en la misma. Para tratar de solucionar el problema de la iluminación, se probó colocar un objeto entre la fuente de luz y el sitio donde estaba el objeto, pero esto no dio muy buenos resultados. Lo segundo que se probó fue cambiar la configuración de la cámara, bajándole el brillo y un poco el contraste. Finalmente, una solución que se encontró fue dejar debajo del objeto una superficie blanca o clara grande, para que el contraste de la cámara permita distinguir el objeto.
 
-## Detección de componente
+
+
+
 
 ---
 
 # 3. Descripción de la solución planteada.
+
+Con todo lo anterior, la solución se organizó en cuatro secciones: recepción, clasificación, Pick y place, y el control de la ejecución del sistema se concentró en la HMI que se diseñó en ScreenMaker de RobotStudio para finalmente ser implementada en el teachpendant del robot. Desde esta interfaz, se le permite al usuario, iniciar y parar la rutina, conocer el estado actual tanto de la rutina como del proceso y realizar las verificaciones requeridas en las etapas de clasificación, pick y place. Además, al terminar un almacén se permite iniciar uno nuevo. 
+
+La solución se inició con el desarrollo del código en RAPPID y su simulación en RobotStudio, y a la par se trabajó en las conexiones físicas, en la clasificación por visión de máquina, y en el diseño e impresión 3D de los soportes; con cada parte funcionando se realizaron pruebas individuales, para verificar la conexiones, puntos de acercamiento del robot, la correcta clasificación de componentes y finalmente se cargó el código y la HMI en el controlador físico, para la ejecución de la rutina con el robot.  
+
+Con esto, el proceso automatizado quedó estructurado de la siguiente manera:
+
+- **Protecciones**
+- 1.	Inicialización
+1. 	
+El proceso inicia con la inicialización del robot y la verificación de que todos los dispositivos se encuentran en un estado seguro para comenzar la operación. Posteriormente, la banda transportadora permanece en movimiento hasta que el sensor detecta la presencia de un componente en la zona de recolección.
+2.	Recepción
+El sensor detecta el componente, lo que detiene la banda transportadora y envía una señal para que la cámara tome la foto.
+3.	Clasificación
+Una vez detectado el componente, el robot espera la clasificación la cual ocurre en un computador externo a través de un algoritmo de visión de máquina que es capaz de determinar el tipo de elemento presente. Dependiendo del resultado obtenido, el sistema solicita una confirmación del operador mediante la interfaz HMI antes de continuar con el proceso de manipulación.
+4.	Pick
+Después de validar la clasificación, la banda se mueve para ubicar el componente en el área de PICK evitando que la cámara interfiera este proceso, siguiendo esto, el robot realiza la operación de Pick, primero con un acercamiento a 5 cm verticalmente para luego acercase a una menor velocidad al componente, igualmente espera confirmación del operador.
+5.	Place
+Con la confirmación de PICK se ejecuta la trayectoria correspondiente para depositarlo en la celda asignada dentro del almacén y es se espera confirmación del usuario. 
+6.	Fin y reinicio de rutina
+Con esta última confirmación, el robot vuelve a HOME y el proceso anterior inicia nuevamente, esperando a que el sensor detecte otro componente, este ciclo se repite hasta completar el objetivo, el cual es almacenar 30 componentes, al cumplir la meta, se detienen todos los dispositivos y se espera a que el operario inicie un nuevo almacén. 
+Manejo de fallas
+Con el fin de incrementar la confiabilidad del sistema, se implementaron mecanismos de verificación para ciertas etapas del proceso. 
+-	Clasificación
+Si la clasificación no es aceptada, el sistema permite repetir la clasificación, lo cual consiste en retroceder el componente e iniciar nuevamente la detección para la captura de una nueva imagen o descartar el componente, lo cual implica poner nuevamente en movimiento la banda transportadora. 
+-	Pick
+Si no se confirma el pick, es posible que el robot repita el pick o que se descarte el componente poniendo nuevamente en movimiento la banda transportadora, esperando otro componente.
+-	Place
+Al no confirmar el place, se muestra un mensaje en la HMI y no se actualizan los contadores, y se continua con la rutina.
+-	Parada de emergencia
+Como medida de seguridad, el programa incorpora una rutina de parada de emergencia por software que termina la línea en la que va el código, para el programa y coloca el sistema en un estado seguro apagando los dispositivos; y espera a que el usuario reanude el proceso.
+
 
 ---
 
