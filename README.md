@@ -84,22 +84,23 @@ Por otro lado, se decidió hacer uso de Python en lugar de MATLAB, dado que ya e
 
 Como se contaba al inicio con la “webcam HD C270” se diseñó e imprimió un soporte para esta, sin embargo, el modelo de la cámara se cambió por la “webcam 720P” y al montarla se observó que la cercanía al objeto no permitía una buena resolución, por lo que, por tiempo y flexibilidad se utilizó un trípode como soporte, lo que permitió graduar la distancia fácilmente. 
 
+<div align="center">
+
 <table>
   <tr>
     <td align="center">
-      <img src="images/disenomar.png" width="250"><br>
+      <img src="images/webcam.webp" width="250"><br>
       <b>Figura 2. Modelado herramienta</b>
     </td>
     <td align="center">
-      <img src="images/Dibujopastel.png" width="250"><br>
+      <img src="images/soporte.png" width="250"><br>
       <b>Figura 3. Diseño decoración</b>
-    </td>
-    <td align="center">
-      <img src="images/disenopas.png" width="250"><br>
-      <b>Figura 4. Modelado torta</b>
     </td>
   </tr>
 </table>
+
+</div>
+
 
 ## Diseño gripper
 
@@ -110,7 +111,7 @@ Como para la parte de recepción se necesitaba saber si el componente estaba en 
 
 <div align="center">
 
-<img src="images/abbs.jpeg" alt="ABB" style="border-radius: 50%; width: 400px;"><br>
+<img src="images/sensor.jpeg" alt="ABB" style="border-radius: 50%; width: 400px;"><br>
 
 <b>Figura 1. Manipuladores ABB IRB 140</b>
 
@@ -171,7 +172,7 @@ Acompañado de esto, se tomaron fotos de cada uno de los objetos ubicados en el 
 
 <div align="center">
 
-<img src="images/abbs.jpeg" alt="ABB" style="border-radius: 50%; width: 400px;"><br>
+<img src="images/esquema.png" alt="ABB" style="border-radius: 50%; width: 400px;"><br>
 
 <b>Figura 1. Manipuladores ABB IRB 140</b>
 
@@ -181,6 +182,12 @@ Con todo lo anterior, la solución se organizó en cuatro secciones: recepción,
 
 La solución se inició con el desarrollo del código en RAPPID y su simulación en RobotStudio, y a la par se trabajó en las conexiones físicas, en la clasificación por visión de máquina, y en el diseño e impresión 3D de los soportes; con cada parte funcionando se realizaron pruebas individuales, para verificar la conexiones, puntos de acercamiento del robot, la correcta clasificación de componentes y finalmente se cargó el código y la HMI en el controlador físico, para la ejecución de la rutina con el robot.  
 
+<div align="center">
+
+<img src="images/esquema.png" alt="ABB" style="border-radius: 50%; width: 400px;"><br>
+
+<b>Figura 1. Manipuladores ABB IRB 140</b>
+
 Con esto, el proceso automatizado quedó estructurado de la siguiente manera:
 
 1. Inicialización: El proceso inicia con la inicialización del robot y la verificación de que todos los dispositivos se encuentran en un estado seguro para comenzar la operación. Posteriormente, la banda transportadora permanece en movimiento hasta que el sensor detecta la presencia de un componente en la zona de recolección.
@@ -189,6 +196,12 @@ Con esto, el proceso automatizado quedó estructurado de la siguiente manera:
 4. Pick: Después de validar la clasificación, la banda se mueve para ubicar el componente en el área de PICK evitando que la cámara interfiera este proceso, siguiendo esto, el robot realiza la operación de Pick, primero con un acercamiento a 5 cm verticalmente para luego acercase a una menor velocidad al componente, igualmente espera confirmación del operador.
 5. Place: Con la confirmación de PICK se ejecuta la trayectoria correspondiente para depositarlo en la celda asignada dentro del almacén y es se espera confirmación del usuario. 
 6. Fin y reinicio de rutina: Con esta última confirmación, el robot vuelve a HOME y el proceso anterior inicia nuevamente, esperando a que el sensor detecte otro componente, este ciclo se repite hasta completar el objetivo, el cual es almacenar 30 componentes, al cumplir la meta, se detienen todos los dispositivos y se espera a que el operario inicie un nuevo almacén.
+
+<div align="center">
+
+<img src="images/esquema.png" alt="ABB" style="border-radius: 50%; width: 400px;"><br>
+
+<b>Figura 1. Manipuladores ABB IRB 140</b>
 
 **Manejo de fallas**
 
