@@ -70,7 +70,7 @@ Teniendo en cuenta el proceso a automatizar y los requerimientos, inicialmente s
 Originalmente, la idea para conseguir que el robot fuese capaz de actuar en consecuencia a un reconocimiento de objetos era usar un servidor de Ignition, la cual es una plataforma de software para automatización industrial. Este servidor permitiría conectar un modelo de visión de máquina a un IOT gateway de Robot Studio. Este modelo sería programado y ejecutado en Matlab usando imágenes propias tomadas con la cámara a utilizar en el espacio de trabajo. La intención de hacer esto era que el modelo fuese capaz de hacer la clasificación y, adicionalmente, entregar la posición del objeto respecto a la cámara para luego encontrar la posición del objeto respecto al robot.
 
 <p align="center">
-<img src="images/Arquitectura_inicial.png" width="500">
+<img src="images/Arquitectura_inicial.png" width="600">
 <br>
 <b>Figura 2. Primera arquitectura planteada. </b>
 </p>
@@ -90,11 +90,11 @@ Como se contaba al inicio con la “webcam HD C270” se diseñó e imprimió un
 <table>
   <tr>
     <td align="center">
-      <img src="images/webcam.webp" width="250"><br>
+      <img src="images/webcam.webp" width="300"><br>
       <b>Figura 3. Webcam HD C270</b>
     </td>
     <td align="center">
-      <img src="images/soporte.png" width="250"><br>
+      <img src="images/soporte.png" width="300"><br>
       <b>Figura 4. Diseño soporte cámara</b>
     </td>
   </tr>
@@ -110,7 +110,7 @@ Antes de llegar a la solución final descrita en la Sección 4, se evaluó una p
 <p align="center">
 <img src="images/Electroiman_12V.png" width="300">
 <br>
-<b>Figura 8. Electroimán de 12V considerado inicialmente.</b>
+<b>Figura 5. Electroimán de 12V considerado inicialmente.</b>
 </p>
 
 Para integrar este electroimán al robot, se diseñó en CAD un acople preliminar que permitiera fijarlo a la brida del manipulador, el cual fue posteriormente fabricado mediante impresión 3D para realizar pruebas físicas de montaje y sujeción.
@@ -121,11 +121,11 @@ Para integrar este electroimán al robot, se diseñó en CAD un acople prelimina
   <tr>
     <td align="center">
       <img src="images/Acople_Preliminar_CAD.png" width="300"><br>
-      <b>Figura 9. Modelo CAD del acople preliminar para el electroimán de 12V.</b>
+      <b>Figura 6. Modelo CAD del acople preliminar para el electroimán de 12V.</b>
     </td>
     <td align="center">
       <img src="images/Acople_Preliminar_Impreso.jpg" width="300"><br>
-      <b>Figura 10. Acople preliminar fabricado mediante impresión 3D.</b>
+      <b>Figura 7. Acople preliminar fabricado mediante impresión 3D.</b>
     </td>
   </tr>
 </table>
@@ -143,7 +143,7 @@ Como para la parte de recepción se necesitaba saber si el componente estaba en 
 
 <img src="images/sensor.jpeg" alt="ABB" style="border-radius: 50%; width: 600px;"><br>
 
-<b>Figura 1. Manipuladores ABB IRB 140</b>
+<b>Figura 8. Manipuladores ABB IRB 140</b>
 
 </div>
 
@@ -161,9 +161,9 @@ Para evitar algún daño en el sistema eléctrico del robot, debido a las incert
 Inicialmente, se intentó hacer uso del modelo Net8 para realizar la clasificación, haciendo uso de un dataset que se encuentra disponible en [Dataset](https://www.kaggle.com/datasets/julioazancort/basic-electronic-components), el cual contiene aproximadamente 8000 imágenes, clasificadas en cinco clases: Capacitor, Dataset_Treino, IC, Resistor, Transistor. Aunque con imágenes similares el modelo detectó correctamente la clase, al probarlo con las imágenes de nuestro escenario real, realizó mal la clasificación.
 
 <p align="center">
-<img src="images/Primer_Dat.png" width="350">
+<img src="images/Primer_Dat.png" width="600">
 <br>
-<b>Figura 5. Etiquetado del primer Dataset. </b>
+<b>Figura 9. Etiquetado del primer Dataset. </b>
 </p>
 
 En consecuencia, se intentó realizar un etiquetado para intentar usar este primer dataset con YOLO, haciendo uso de un script de Python, el cual asignó una etiqueta automáticamente según la clase. Sin embargo, tantas imágenes dificultaron el entrenamiento del modelo. Adicionalmente, se presentó el problema de que este dataset contiene imágenes donde el objeto a identificar ocupa la mayoría de la misma, situación que no se presenta en nuestro escenario. Este problema provocó que, al intentar realizar reentrenamiento del modelo "yolo11x-cls.pt", este tomase parte del fondo como información importante para reconocer la clase de la imagen. Por lo tanto, se optó por cambiar el tipo de detección a emplear, decidiendo así usar YOLO en modo detector para realizar el entrenamiento.
@@ -183,15 +183,15 @@ En consecuencia, se intentó realizar un etiquetado para intentar usar este prim
     </tr>
   </table>
   <br>
-  <b>Figura 6. </b> Entrenamiento con yolo11x: (a) Imágen del entrenamiento y (b) Matriz de confusión.
+  <b>Figura 10. </b> Entrenamiento con yolo11x: (a) Imágen del entrenamiento y (b) Matriz de confusión.
 </div>
 
 En la imagen que se muestra arriba, se puede observar cómo el entrenamiento tomó una imagen sin ningún objeto como parte de una clase; además, en la imagen que se encuentra al lado, se observa la matriz de confusión que se genera de forma automática al usar YOLO. Esta matriz nos muestra que únicamente está reconociendo los objetos nulos, y los reconoce como conectores. Independientemente de la interpretación del resultado en particular, la conclusión principal es que no está realizando correctamente el entrenamiento. Probablemente por dos razones. La primera es por errores en el etiquetado, ya que se hizo de forma automática, y la segunda por el tipo de imagen que se está usando. 
 
 <p align="center">
-<img src="images/Roboflow.png" width="350">
+<img src="images/Roboflow.png" width="600">
 <br>
-<b>Figura 7. Datasets empleados para el entrenamiento. </b>
+<b>Figura 11. Datasets empleados para el entrenamiento. </b>
 </p>
 
 Acompañado de esto, se tomaron fotos de cada uno de los objetos ubicados en el sitio. Durante este proceso observamos que la iluminación estaba afectando la calidad de la imagen, además del contraste que se produce en la misma. Para tratar de solucionar el problema de la iluminación, se probó colocar un objeto entre la fuente de luz y el sitio donde estaba el objeto, pero esto no dio muy buenos resultados. Lo segundo que se probó fue cambiar la configuración de la cámara, bajándole el brillo y un poco el contraste. Finalmente, una solución que se encontró fue dejar debajo del objeto una superficie blanca o clara grande, para que el contraste de la cámara permita distinguir el objeto.
@@ -204,7 +204,7 @@ Acompañado de esto, se tomaron fotos de cada uno de los objetos ubicados en el 
 
 <img src="images/esquema.png" alt="ABB" style="border-radius: 50%; width: 600px;"><br>
 
-<b>Figura 8. Secciónes sistema solución</b>
+<b>Figura 12. Secciónes sistema solución</b>
 
 </div>
 
@@ -216,7 +216,7 @@ La solución se inició con el desarrollo del código en RAPPID y su simulación
 
 <img src="images/simu.png" alt="ABB" style="border-radius: 50%; width: 600px;"><br>
 
-<b>Figura 9. HMI implementada</b>
+<b>Figura 13. HMI implementada</b>
 
 </div>
 
@@ -233,7 +233,7 @@ Con esto, el proceso automatizado quedó estructurado de la siguiente manera:
 
 <img src="images/real.jpeg" alt="ABB" style="border-radius: 50%; width: 600px;"><br>
 
-<b>Figura 10. Simulación</b>
+<b>Figura 14. Simulación</b>
 
 </div>
 
@@ -253,7 +253,7 @@ Con el fin de incrementar la confiabilidad del sistema, se implementaron mecanis
 
 <img src="images/Gripper_Montado.jpg" alt="ABB" style="border-radius: 50%; width: 450px;"><br>
 
-<b>**Figura. Herramienta (electroimán) montada en el efector final del robot ABB IRB 140.**</b>
+<b>Figura 15. Herramienta (electroimán) montada en el efector final del robot ABB IRB 140.</b>
 
 </div>
 
@@ -271,7 +271,7 @@ Esta interfaz mediante relé introduce una **lógica negada** entre la señal de
 
 <img src="images/Plano_Gripper.png" alt="ABB" style="border-radius: 50%; width: 450px;"><br>
 
-<b>**Figura. Plano de la herramienta electroimán, con vista frontal (patrón de sujeción a la brida, R28.48 mm de radio de ubicación de tornillos, R3 mm de redondeo), vista lateral (espesor de 10 mm y longitud total de 73.24 mm) y vista isométrica del conjunto.**</b>
+<b>Figura 16. Plano de la herramienta electroimán, con vista frontal (patrón de sujeción a la brida, R28.48 mm de radio de ubicación de tornillos, R3 mm de redondeo), vista lateral (espesor de 10 mm y longitud total de 73.24 mm) y vista isométrica del conjunto.</b>
 
 </div>
 
@@ -322,7 +322,7 @@ La sujeción del conjunto se realiza en dos etapas, cada una con un tornillo de 
 
 <img src="images/Gripper_Final.jpg" alt="ABB" style="border-radius: 50%; width: 450px;"><br>
 
-<b>**Figura. Herramienta final ensamblada, lista para su instalación en el robot.**</b>
+<b>**Figura 17. Herramienta final ensamblada, lista para su instalación en el robot.**</b>
 
 </div>
 ---
@@ -863,9 +863,9 @@ Las rutinas `Path_13`, `Path_14` y `Path_15` siguen exactamente la misma estruct
 Para poder realizar la clasificación de los cuatro objetos, hicimos uso de visión de máquina. Como se mencionó con anterioridad, se seleccionó hacer uso de YOLO para cumplir esta función. Para poder implementarlo, fue necesario descargar la librería de Ultralytics que contiene el modelo YOLO, haciendo uso del comando "pip install ultralytics". Tras esto, se procedió a tomar las fotos necesarias para entrenar el modelo de visión de máquina. Cabe señalar que se tomaron dos “sesiones” de fotos, ya que tras las primeras se realizaron algunos cambios, por lo que para mantener el modelo lo más fiel a lo que va a observar la cámara fue necesario volver a tomar fotos. Además, la primera "sesión" fue tomada con un celular, por lo que la calidad de la imagen es diferente a la de la webcam que se terminó usando.
 
 <p align="center">
-<img src="images/Roboflow.png" width="350">
+<img src="images/Roboflow2.png" width="600">
 <br>
-<b>Figura 11. Datasets empleados para el entrenamiento. </b>
+<b>Figura 18. Datasets empleados para el entrenamiento. </b>
 </p>
 
 Luego de tomar las fotos, se procedió a etiquetarlas, para indicar a qué objeto corresponde cada foto, además de indicar la región de la imagen donde se encuentra, esto para evitar que tome parte del fondo para reconocer el objeto. Esta tarea se realizó en la plataforma Roboflow. El primer dataset contiene en total 87 imágenes, y el segundo contiene 174 imágenes. Luego se aplica data augmentation para darle más variedad al dataset. Este dataset se descarga para luego usarlo de manera local para el entrenamiento.
@@ -883,9 +883,9 @@ En el programa train_det.py se maneja únicamente una función, la cual a su vez
 El último entrenamiento realizado ofreció la siguiente matriz de confusión. En esta podemos observar que, salvo algunas excepciones en la prueba que realiza el modelo, la mayoría de imágenes fueron clasificadas correctamente.
 
 <p align="center">
-<img src="images/Matriz_final.png" width="350">
+<img src="images/Matriz_final.png" width="500">
 <br>
-<b>Figura 12. Matriz de confusión final. </b>
+<b>Figura 19. Matriz de confusión final. </b>
 </p>
 
 Para usar la detección ya con la cámara, se utiliza el programa camara_deteccion.py; este no contiene funciones propias en su código, únicamente se ejecuta de manera secuencial. En este código se encuentra un bucle while que se encarga de estar constantemente leyendo el puerto serial, esperando el mensaje “IR”; en el momento que recibe este mensaje, procede a tomar una captura de la cámara usando el método cap.read(). Tras realizar la captura, se procede a realizar el análisis con el modelo previamente cargado desde el entrenamiento. Tras usar el modelo para reconocer algún objeto, se guarda la imagen de los resultados y luego se evalúa la condición de que si se detectase algún objeto en la captura. En caso de que no, entonces se emite un mensaje indicando que no se detectó ningún objeto. En el caso contrario, entonces, del mejor resultado se extrae la clase identificada y su confiabilidad. Dado que la numeración que realiza YOLO de las clases es diferente a la numeración que recibe el Arduino para distinguir a qué clase corresponde la clase, es necesario sumarle 1 al valor que obtiene YOLO. Luego de imprimir en consola el nombre de la clase, la confianza y el número de la clase, se envía por serial al Arduino este número. Para evitar que haya problemas en la comunicación y que no reciba nuevamente el mensaje IR, se debe configurar un ciclo while que espera a recibir el mensaje “Recibido” desde el Arduino. Cuando recibe este mensaje, muestra en pantalla una imagen con la clasificación realizada, junto con su confiabilidad y con la caja envolvente.
@@ -923,7 +923,7 @@ Para usar la detección ya con la cámara, se utiliza el programa camara_detecci
     </tr>
   </table>
   <br>
-  <b>Figura 13. </b> Evidencias de detección: (a) Nulo, (b) Capacitor, (c) Conector, (d) Resistencia y (e) Circuito Integrado.
+  <b>Figura 20. </b> Evidencias de detección: (a) Nulo, (b) Capacitor, (c) Conector, (d) Resistencia y (e) Circuito Integrado.
 </div>
 
 
@@ -950,17 +950,17 @@ El plano completo en formato PDF puede consultarse en [`Plano_Planta.pdf`](./Ane
 Para la realización del esquema, se tuvo en cuenta la conexión entre el Arduino y el controlador del manipulador, omitiendo así la conexión entre el Arduino y el computador y la cámara, ya que el Arduino únicamente se conecta con el cable USB para hacer uso del puerto serial, así como la cámara se conecta a otro puerto USB del computador.
 
 <p align="center">
-<img src="images/Esquemático.png" width="350">
+<img src="images/Esquemático.png" width="600">
 <br>
-<b>Figura 15. Esquemático del circuito utilizado en el proyecto. </b>
+<b>Figura 21. Esquemático del circuito utilizado en el proyecto. </b>
 </p>
 
 Luego, la implementación física de esta conexión, particularmente la que involucra al Arduino, los relés y el optoacoplador, se montó sobre una tabla de madera, únicamente para evitar que se desconecten cables. Adicionalmente, se utilizó alambre de cable UTP para realizar la mayoría de las conexiones entre los diferentes elementos.
 
 <p align="center">
-<img src="images/Montaje.jpeg" width="350">
+<img src="images/Montaje.jpeg" width="600">
 <br>
-<b>Figura. Parte del circuito montado. </b>
+<b>Figura 22. Parte del circuito montado. </b>
 </p>
 
 Para consultar el esquema con más detalle, revise el anexo. [Esquemático](Anexos/Esquematico-v1.pdf)
