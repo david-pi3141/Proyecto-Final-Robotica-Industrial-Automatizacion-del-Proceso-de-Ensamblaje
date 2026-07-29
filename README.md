@@ -10,7 +10,8 @@ PCBs</h2>
 
 <h2>Profesores: <br>Pedro Fabián Cárdenas Herrera <br> Manuel Felipe Carranza Montenegro</h2>
 
-<h4>Paula Nicole Quiroga Romero <br>
+<h4>Integrantes del equipo: <br>
+    Paula Nicole Quiroga Romero <br>
     Jesus David Sanchez Cobos <br>
     David Steven Pinzón Hernández</h4>
 
